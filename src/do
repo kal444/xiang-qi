@@ -1,0 +1,31 @@
+#!/bin/zsh
+echo gcc -Wall -shared -o libXiangQi_console.so ./plugins/console/console.c -I.  -lcurses
+gcc -Wall -shared -o libXiangQi_console.so ./plugins/console/console.c -I.  -lcurses
+
+echo gcc -Wall -rdynamic -o xiangqi xiangqi.c genlist.c -ldl
+gcc -Wall -rdynamic -o xiangqi xiangqi.c genlist.c -ldl
+
+echo
+echo ./xiangqi -h
+./xiangqi -h
+
+echo
+echo ./xiangqi -p ./libXiangQi_console.so -- -h
+./xiangqi -p ./libXiangQi_console.so -- -h
+
+echo
+
+if [[ x$1x == *c* ]]; then
+    echo ./xiangqi -p ./libXiangQi_console.so -- -m cureses ;
+    ./xiangqi -p ./libXiangQi_console.so -- -m cureses ;
+fi
+
+if [[ x$1x == *v* ]]; then
+    echo ./xiangqi -p ./libXiangQi_console.so -- -m vga ;
+    ./xiangqi -p ./libXiangQi_console.so -- -m vga ;
+fi
+
+if [[ x$1x == *p* ]]; then
+    echo ./xiangqi -p ./libXiangQi_console.so -- -m plain ;
+    ./xiangqi -p ./libXiangQi_console.so -- -m plain ;
+fi
